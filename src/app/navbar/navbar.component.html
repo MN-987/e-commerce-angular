@@ -1,0 +1,52 @@
+<p-menubar
+  [style]="{ backgroundColor: 'transparent', border: 0, paddingTop: '1rem' }"
+  [model]="items"
+>
+  <ng-template pTemplate="start">
+    <img src="/assets/logo.png" height="40" class="mr-2 ml-3" />
+  </ng-template>
+  <ng-template pTemplate="end">
+    <div class="flex align-items-center gap-2">
+      <a routerLink="cart">
+        <p-button styleClass=" p-button-outlined">
+          <i class="pi pi-shopping-cart"></i>
+          <span class="ml-2 font-bold hidden md:block">Cart</span>
+        </p-button>
+      </a>
+      <p-divider
+        styleClass="nav-divider hidden md:block"
+        layout="vertical"
+      ></p-divider>
+      <p-button
+        styleClass=" p-button-secondary"
+        (onClick)="authState ? logout() : login()"
+      >
+        <i class="{{ authState ? 'pi pi-sign-out' : 'pi pi-sign-in' }}"></i>
+        <span class="ml-2 font-bold hidden md:block">
+          {{ authState ? "Logout" : "Login" }}
+        </span>
+      </p-button>
+    </div>
+  </ng-template>
+</p-menubar>
+<p-dialog
+  [(visible)]="visible"
+  [draggable]="false"
+  [resizable]="false"
+  [modal]="true"
+  [style]="{ width: '25vw' }"
+>
+  <ng-template pTemplate="header">
+    <h1 class="text-xl font-bold text-center w-full">Ahlan</h1>
+  </ng-template>
+  <app-register
+    *ngIf="state == 'register'"
+    (changeStateEvent)="toggleState('login')"
+    (visibleEvent)="toggleVisible(false)"
+  ></app-register>
+  <app-login
+    *ngIf="state == 'login'"
+    (changeStateEvent)="toggleState('register')"
+    (visibleEvent)="toggleVisible(false)"
+  ></app-login>
+</p-dialog>

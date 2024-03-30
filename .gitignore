@@ -1,0 +1,8 @@
+/node_modules/
+/.vscode/
+/.git/
+/.angular/
+*-lock.json
+/e-commerce-backend/node_modules/
+/e-commerce-backend/.git/
+/e-commerce-backend/.env
